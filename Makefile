@@ -20,22 +20,29 @@ INCLUDE = libft.h Makefile
 
 # COLORS
 
-GOOD_TEXT = \033[38;5;2m   # green text (2)
-BAD_TEXT = \033[38;5;1m    # red text (1)
-CLEAN_COLOR = \033[38;5;7m # white text (7)
+GOOD_TEXT = \033[32m   # green text (2)
+BAD_TEXT = \033[31m    # red text (1)
+INFO_TEXT = \033[36m
+ERASE = \033[2K\r\033[1A
+RESET = \033[0m
 
 all: $(NAME)
 
 %.o: %.c $(INCLUDE)
+	@echo "$(GOOD_TEXT)➤ Making libft"
+	@printf "$(INFO_TEXT)   ╰╴Making $(RESET)$@$(BAD_TEXT)"
 	@gcc $(FLAGS) -o $@ -c $<
+	@printf "$(ERASE)"
 
 $(NAME): $(OBJ) $(BONUS_OBJ)
 	@echo "$(GOOD_TEXT)➤ Making libft$(BAD_TEXT)"
 	@ar -rcs $(NAME) $(OBJ) $(BONUS_OBJ)
+	@printf "$(RESET)"
 
 clean:
 	@echo "$(GOOD_TEXT)➤ Cleaning libft$(BAD_TEXT)"
 	@rm -f $(OBJ) $(BONUS_OBJ)
+	@printf "$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
