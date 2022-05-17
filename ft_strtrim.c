@@ -6,13 +6,13 @@
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:36:02 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/11 17:51:28 by jcollon          ###   ########lyon.fr   */
+/*   Updated: 2022/05/17 23:40:43 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	isin(char c, char const *set)
+int	isincharset(char c, char const *set)
 {
 	while (*set)
 	{
@@ -28,7 +28,7 @@ int	len_start(const char *s1, const char *set)
 	int	len;
 
 	len = 0;
-	while (s1[len] && isin(s1[len], set))
+	while (s1[len] && isincharset(s1[len], set))
 		len++;
 	return (len);
 }
@@ -40,7 +40,7 @@ int	len_end(const char *s1, const char *set)
 
 	len = 0;
 	len_s1 = ft_strlen(s1);
-	while (s1[len_s1 - len - 1] && isin(s1[len_s1 - len - 1], set))
+	while (s1[len_s1 - len - 1] && isincharset(s1[len_s1 - len - 1], set))
 		len++;
 	return (len);
 }
