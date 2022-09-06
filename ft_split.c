@@ -6,7 +6,7 @@
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 19:15:19 by jcollon           #+#    #+#             */
-/*   Updated: 2022/01/18 19:28:26 by jcollon          ###   ########lyon.fr   */
+/*   Updated: 2022/09/06 14:41:04 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	ft_count_words(const char *str, char c)
 	int	i;
 	int	count;
 
-	if (!str)
-		return (0);
 	i = 0;
 	count = 0;
 	while (str[i])
@@ -59,13 +57,20 @@ int	ft_count_words(const char *str, char c)
 			i += ft_len_word(&str[i], c);
 		}
 	}
-	return (count);
+	return (count + 1);
 }
 
-static char	**cleartab(char **ret, int max)
+static char	**cleartab_init(char **ret, int max)
 {
 	int	i;
 
+	if (!ret)
+	{
+		ret = malloc(sizeof(*ret) * max);
+		if (!ret)
+			return (0);
+		return (ret);
+	}
 	i = 0;
 	while (i <= max)
 		free(ret[i]);
@@ -79,13 +84,13 @@ char	**ft_split(char const *s, char c)
 	int		max_word;
 	int		i;
 
+	if (!s)
+		return (0);
 	word = -1;
 	max_word = ft_count_words(s, c);
 	i = 0;
-	ret = malloc(sizeof(*ret) * (max_word + 1));
-	if (!ret || !s)
-		return (0);
-	while (++word < max_word)
+	ret = cleartab_init(0, max_word);
+	while (++word < max_word - 1)
 	{
 		while (s[i] && s[i] == c)
 			i++;
@@ -93,7 +98,7 @@ char	**ft_split(char const *s, char c)
 		{
 			ret[word] = ft_strndup(&s[i], ft_len_word(&s[i], c));
 			if (!ret[word])
-				return (cleartab(ret, word - 1));
+				return (cleartab_init(ret, word - 1));
 			i += ft_len_word(&s[i], c);
 		}
 	}
