@@ -45,6 +45,8 @@ int	ft_count_words(const char *str, char c)
 	int	i;
 	int	count;
 
+	if (!str)
+		return (0);
 	i = 0;
 	count = 0;
 	while (str[i])
@@ -57,23 +59,17 @@ int	ft_count_words(const char *str, char c)
 			i += ft_len_word(&str[i], c);
 		}
 	}
-	return (count + 1);
+	return (count);
 }
 
-static char	**cleartab_init(char **ret, int max)
+static char	**cleartab(char **ret, int max)
 {
 	int	i;
 
-	if (!ret)
-	{
-		ret = malloc(sizeof(*ret) * max);
-		if (!ret)
-			return (0);
-		return (ret);
-	}
-	i = 0;
-	while (i <= max)
+	i = -1;
+	while (++i <= max)
 		free(ret[i]);
+	free(ret);
 	return (0);
 }
 
@@ -84,13 +80,13 @@ char	**ft_split(char const *s, char c)
 	int		max_word;
 	int		i;
 
-	if (!s)
-		return (0);
 	word = -1;
 	max_word = ft_count_words(s, c);
 	i = 0;
-	ret = cleartab_init(0, max_word);
-	while (++word < max_word - 1)
+	ret = malloc(sizeof(*ret) * (max_word + 1));
+	if (!ret)
+		return (0);
+	while (++word < max_word)
 	{
 		while (s[i] && s[i] == c)
 			i++;
@@ -98,7 +94,7 @@ char	**ft_split(char const *s, char c)
 		{
 			ret[word] = ft_strndup(&s[i], ft_len_word(&s[i], c));
 			if (!ret[word])
-				return (cleartab_init(ret, word - 1));
+				return (cleartab(ret, word - 1));
 			i += ft_len_word(&s[i], c);
 		}
 	}
