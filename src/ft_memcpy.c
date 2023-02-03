@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 11:00:26 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/03 11:00:26 by jcollon          ###   ########lyon.fr   */
+/*   Created: 2021/11/03 10:06:46 by jcollon           #+#    #+#             */
+/*   Updated: 2021/11/03 10:06:46 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t limit)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
+	char	*d;
 
-	if (n == 0)
+	if (!dest || !src)
 		return (0);
-	str1 = (unsigned char *) s1;
-	str2 = (unsigned char *) s2;
-	while (*str1 && *str2 && n - 1 && *str1 == *str2)
+	d = dest;
+	while (limit && *(char *)src)
 	{
-		str1++;
-		str2++;
-		n--;
+		*d = *(char *) src;
+		d++;
+		src++;
+		limit--;
 	}
-	return (*str1 - *str2);
+	return (dest);
 }

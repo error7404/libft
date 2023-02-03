@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 15:04:46 by jcollon           #+#    #+#             */
-/*   Updated: 2022/01/18 19:43:57 by jcollon          ###   ########lyon.fr   */
+/*   Created: 2021/11/10 15:14:01 by jcollon           #+#    #+#             */
+/*   Updated: 2023/02/03 16:56:32 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief Counts the number of nodes in a list.
- * 
- * @param lst The beginning of the list.
- * @return int The length of the list.
- */
-int	ft_lstsize(t_list *lst)
+void	ft_lstadd_back(t_list **lst, t_list *new_lst)
 {
-	int	len;
+	t_list	*last;
 
-	len = 0;
-	if (!lst)
-		return (0);
-	while (lst->next)
-	{
-		lst = lst->next;
-		len++;
-	}
-	return (len + 1);
+	last = ft_lstlast(*lst);
+	if (!*lst)
+		*lst = new_lst;
+	else
+		last->next = new_lst;
 }

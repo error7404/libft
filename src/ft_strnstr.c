@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 13:19:47 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/11 17:41:06 by jcollon          ###   ########lyon.fr   */
+/*   Created: 2021/11/03 13:59:47 by jcollon           #+#    #+#             */
+/*   Updated: 2023/02/03 16:43:25 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t limit)
 {
-	while (n)
+	int	i;
+
+	if (*needle == 0)
+		return ((char *) haystack);
+	while (limit && *haystack)
 	{
-		if (*(unsigned char *) s == (unsigned char) c)
-			return ((void *) s);
-		n--;
-		s++;
+		if (*haystack == *needle)
+		{
+			i = 0;
+			while (limit - i && haystack[i] == needle[i]
+				&& haystack[i] && needle[i])
+				i++;
+			if (i == ft_strlen(needle))
+				return ((char *) haystack);
+		}
+		haystack++;
+		limit--;
 	}
 	return (0);
 }

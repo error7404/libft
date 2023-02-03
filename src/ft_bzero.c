@@ -6,21 +6,21 @@
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 23:18:13 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/02 23:18:13 by jcollon          ###   ########lyon.fr   */
+/*   Updated: 2023/01/31 19:18:30 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string.h"
+#include <string.h>
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *ptr, size_t size)
 {
 	char	*str;
 
-	str = s;
-	while (n)
+	str = ptr;
+	while (size)
 	{
 		*str = 0;
 		str++;
-		n--;
+		size--;
 	}
 }

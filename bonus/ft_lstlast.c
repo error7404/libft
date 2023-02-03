@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 16:02:12 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/11 14:33:31 by jcollon          ###   ########lyon.fr   */
+/*   Created: 2021/11/10 15:11:57 by jcollon           #+#    #+#             */
+/*   Updated: 2023/02/03 17:00:42 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
-{
-	unsigned int	i;
+#include "libft.h"
 
-	i = 0;
-	while (s[i])
-		i++;
-	while (s[i] != (char) c)
-	{
-		if (i == 0)
-			return (0);
-		i--;
-	}
-	return ((char *) s + i);
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

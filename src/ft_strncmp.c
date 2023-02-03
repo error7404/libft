@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 10:23:53 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/05 10:23:53 by jcollon          ###   ########lyon.fr   */
+/*   Created: 2021/11/03 11:00:26 by jcollon           #+#    #+#             */
+/*   Updated: 2023/02/03 16:45:43 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_strncmp(const char *s1, const char *s2, size_t limit)
 {
-	char			*ret;
-	unsigned int	i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (!s || !f)
+	if (limit == 0)
 		return (0);
-	i = 0;
-	ret = malloc((ft_strlen((char *) s) + 1) * sizeof(*ret));
-	if (!ret)
-		return (0);
-	while (s[i])
+	str1 = (unsigned char *) s1;
+	str2 = (unsigned char *) s2;
+	while (*str1 && *str2 && limit - 1 && *str1 == *str2)
 	{
-		ret[i] = f(i, s[i]);
-		i++;
+		str1++;
+		str2++;
+		limit--;
 	}
-	ret[i] = 0;
-	return (ret);
+	return (*str1 - *str2);
 }

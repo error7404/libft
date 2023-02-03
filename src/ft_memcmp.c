@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 15:14:01 by jcollon           #+#    #+#             */
-/*   Updated: 2022/01/18 19:46:45 by jcollon          ###   ########lyon.fr   */
+/*   Created: 2021/11/03 13:28:58 by jcollon           #+#    #+#             */
+/*   Updated: 2023/01/31 19:45:24 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/**
- * @brief Adds the node ’new’ at the end of the list.
- * 
- * @param lst The address of a pointer to the first link of a list.
- * @param new The address of a pointer to the node to be added to the list.
- */
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_memcmp(const void *s1, const void *s2, size_t limit)
 {
-	t_list	*last;
+	unsigned int	i;
+	const char		*str1;
+	const char		*str2;
 
-	last = ft_lstlast(*lst);
-	if (!*lst)
-		*lst = new;
-	else
-		last->next = new;
+	i = 0;
+	str1 = s1;
+	str2 = s2;
+	if (limit == 0)
+		return (0);
+	while (str1[i] == str2[i] && i < limit - 1 && str1[i] && str2[i])
+		i++;
+	return (str1[i] - str2[i]);
 }

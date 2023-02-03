@@ -6,20 +6,20 @@
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 10:32:14 by jcollon           #+#    #+#             */
-/*   Updated: 2021/11/05 10:32:14 by jcollon          ###   ########lyon.fr   */
+/*   Updated: 2023/02/03 17:00:51 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *str, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
 
 	i = 0;
-	if (s)
+	if (str)
 	{
-		while (s[i])
+		while (str[i])
 		{
-			(*f)(i, s + i);
+			(*f)(i, str + i);
 			i++;
 		}
 	}
