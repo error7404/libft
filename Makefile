@@ -6,7 +6,7 @@
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 14:25:01 by jcollon           #+#    #+#              #
-#    Updated: 2021/11/10 14:25:01 by jcollon          ###   ########lyon.fr    #
+#    Updated: 2023/02/04 20:30:34 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,26 +21,27 @@ INCLUDE := .
 
 # COLORS
 
-GOOD_TEXT := \033[32m   # green text (2)
-BAD_TEXT := \033[31m    # red text (1)
-INFO_TEXT := \033[36m
 ERASE := \033[2K\033[1A\r
+CLEAN_TEXT := \033[36m
+INFO_TEXT := \033[35m
+GOOD_TEXT := \033[32m
+BAD_TEXT := \033[31m
 RESET := \033[0m
 
 all: $(NAME)
 $(NAME): $(DIR_OBJ) $(OBJ) $(BONUS_OBJ) Makefile
-	echo "$(GOOD_TEXT)➤ Making libft$(BAD_TEXT)"
+	echo "$(GOOD_TEXT)✅ Making libft$(BAD_TEXT)"
 	ar -rcs $(NAME) $(OBJ) $(BONUS_OBJ)
 	printf "$(RESET)"
 
 $(DIR_OBJ)/%.o: src/%.c Makefile
-	echo "$(GOOD_TEXT)➤ Making libft"
-	printf "$(INFO_TEXT)   ╰╴Making $(RESET)$@$(BAD_TEXT)"
+	echo "$(GOOD_TEXT)⌛ Making libft"
+	printf "$(INFO_TEXT) ⮩ Making $(RESET)$@$(BAD_TEXT)"
 	gcc $(FLAGS) -o $@ -c $< -I $(INCLUDE)
 	printf "$(ERASE)"
 $(DIR_OBJ)/%.o: bonus/%.c Makefile
-	echo "$(GOOD_TEXT)➤ Making libft"
-	printf "$(INFO_TEXT)   ╰╴Making $(RESET)$@$(BAD_TEXT)"
+	echo "$(GOOD_TEXT)⌛ Making libft"
+	printf "$(INFO_TEXT) ⮩ Making $(RESET)$@$(BAD_TEXT)"
 	gcc $(FLAGS) -o $@ -c $< -I $(INCLUDE)
 	printf "$(ERASE)"
 
@@ -48,7 +49,7 @@ $(DIR_OBJ):
 	mkdir -p $@
 
 clean:
-	echo "$(GOOD_TEXT)➤ Cleaning libft$(BAD_TEXT)"
+	echo "$(CLEAN_TEXT)🧹 $(subst f,F,$(subst c,C,$(MAKECMDGOALS)))ing libft$(BAD_TEXT)"
 	rm -rf $(DIR_OBJ)
 	printf "$(RESET)"
 
