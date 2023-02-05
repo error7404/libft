@@ -30,17 +30,17 @@ RESET := \033[0m
 
 all: $(NAME)
 $(NAME): $(DIR_OBJ) $(OBJ) $(BONUS_OBJ) Makefile
-	echo "$(GOOD_TEXT)✅ Making libft$(BAD_TEXT)"
+	echo "$(GOOD_TEXT)✅ Making $(NAME:.a=)$(BAD_TEXT)"
 	ar -rcs $(NAME) $(OBJ) $(BONUS_OBJ)
 	printf "$(RESET)"
 
 $(DIR_OBJ)/%.o: src/%.c Makefile
-	echo "$(GOOD_TEXT)⌛ Making libft"
+	echo "$(GOOD_TEXT)⌛ Making $(NAME:.a=)"
 	printf "$(INFO_TEXT) ⮩ Making $(RESET)$@$(BAD_TEXT)"
 	gcc $(FLAGS) -o $@ -c $< -I $(INCLUDE)
 	printf "$(ERASE)"
 $(DIR_OBJ)/%.o: bonus/%.c Makefile
-	echo "$(GOOD_TEXT)⌛ Making libft"
+	echo "$(GOOD_TEXT)⌛ Making $(NAME:.a=)"
 	printf "$(INFO_TEXT) ⮩ Making $(RESET)$@$(BAD_TEXT)"
 	gcc $(FLAGS) -o $@ -c $< -I $(INCLUDE)
 	printf "$(ERASE)"
@@ -49,7 +49,7 @@ $(DIR_OBJ):
 	mkdir -p $@
 
 clean:
-	echo "$(CLEAN_TEXT)🧹 $(subst f,F,$(subst c,C,$(MAKECMDGOALS)))ing libft$(BAD_TEXT)"
+	echo "$(CLEAN_TEXT)🧹 $(subst f,F,$(subst c,C,$(MAKECMDGOALS)))ing $(NAME:.a=)$(BAD_TEXT)"
 	rm -rf $(DIR_OBJ)
 	printf "$(RESET)"
 
