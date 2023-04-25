@@ -37,7 +37,7 @@ $(NAME): $(DIR_OBJ) $(OBJ) $(BONUS_OBJ) Makefile
 
 $(DIR_OBJ)/%.o: src/%.c Makefile
 	echo -e "$(GOOD_TEXT)⌛ Making $(NAME:.a=)"
-	printf "$(INFO_TEXT) ⮩ Making $(RESET)$@$(BAD_TEXT)"
+	printf "$(INFO_TEXT) ➥ Making $(RESET)$@$(BAD_TEXT)"
 	$(CC) $(FLAGS) -o $@ -c $< -I $(INCLUDE)
 	if [[ "$(MAKEFLAGS)" = *"--jobserver-auth"* ]]; then \
 		printf "\n"; \
@@ -46,7 +46,7 @@ $(DIR_OBJ)/%.o: src/%.c Makefile
 	fi
 $(DIR_OBJ)/%.o: bonus/%.c Makefile
 	echo -e "$(GOOD_TEXT)⌛ Making $(NAME:.a=)"
-	printf "$(INFO_TEXT) ⮩ Making $(RESET)$@$(BAD_TEXT)"
+	printf "$(INFO_TEXT) ➥ Making $(RESET)$@$(BAD_TEXT)"
 	$(CC) $(FLAGS) -o $@ -c $< -I $(INCLUDE)
 	if [[ "$(MAKEFLAGS)" = *"--jobserver-auth"* ]]; then \
 		printf "\n"; \
