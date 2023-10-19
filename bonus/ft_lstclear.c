@@ -6,7 +6,7 @@
 /*   By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:22:59 by jcollon           #+#    #+#             */
-/*   Updated: 2023/02/03 17:00:36 by jcollon          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 17:37:54 by jcollon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	t_list	*tmp2;
 
 	tmp = *lst;
-	tmp2 = *lst;
 	while (tmp)
 	{
 		tmp2 = tmp;
